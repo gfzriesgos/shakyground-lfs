@@ -7,5 +7,8 @@ RUN apt-get update && apt-get install python3.7 python3-pip gmt gmt-dcw gmt-gshh
     pip3 install pandas scipy lxml h5py shapely zmq mock matplotlib decorator scipy psutil pygmt
 
 WORKDIR /usr/share/git/shakyground
-RUN wget https://earthquake.usgs.gov/static/lfs/data/global_vs30_grd.zip && unzip global_vs30_grd.zip -d . && rm global_vs30_grd.zip
+
 COPY . .
+RUN unzip updated_lima_valparaiso_global_vs30_grd.zip && \
+    mv updated_lima_valparaiso_global_vs30.grd global_vs30.grd && \
+    rm updated_lima_valparaiso_global_vs30_grd.zip
